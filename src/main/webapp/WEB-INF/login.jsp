@@ -12,7 +12,7 @@
         <form action="login" method="POST">
             <div class="username">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Enter Username Here" required>
+                <input type="text" name="username" id="username" value="${username}" placeholder="Enter Username Here" required>
             </div>
             <div class="password">
                 <label for="password">Password</label>

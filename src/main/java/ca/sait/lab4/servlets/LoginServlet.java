@@ -1,12 +1,15 @@
 
 package ca.sait.lab4.servlets;
 
+import ca.sait.lab4.models.User;
+import ca.sait.lab4.services.AccountService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -26,6 +29,12 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("username") != null){
+            response.sendRedirect("home");
+            return;
+        }
+        
         //gets the query from the url
         String query = request.getQueryString();
         if(query != null && query.contains("logout")){
@@ -51,6 +60,21 @@ public class LoginServlet extends HttpServlet {
         
         if(username == null || username.isEmpty() || password == null || password.isEmpty()){
             request.setAttribute("message", "Username or Password is missing");
+        }else{
+            AccountService account = new AccountService();
+            User user = account.login(username, password);
+            // login either returns an user object - if successful login
+            //or retuns null - if username or password was not valid
+            
+            if(user != null){
+                request.getSession().setAttribute("username", username);
+                response.sendRedirect("home");
+                return;
+            }else{
+                request.setAttribute("username", username);
+                request.setAttribute("message", "Username or Password did not match");
+                
+            }
         }
         
         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
