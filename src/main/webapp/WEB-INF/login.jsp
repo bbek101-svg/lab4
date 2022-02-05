@@ -8,16 +8,18 @@
     </head>
     <body>
         <h1>Login</h1>
-        <form action="action" method="POST">
+        <!-- the action is login here cause it need to go to login servlet to validate the user -->
+        <form action="login" method="POST">
             <div class="username">
                 <label for="username">Username</label>
-                <input type="text" name="username" id="username" placeholder="Enter Username Here">
+                <input type="text" name="username" id="username" placeholder="Enter Username Here" required>
             </div>
             <div class="password">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Enter Password Here">
+                <input type="password" name="password" id="password" placeholder="Enter Password Here" required>
             </div>
             <button type="submit">Login</button>
         </form>
+        <p>${message}</p>
     </body>
 </html>

@@ -26,7 +26,11 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        //gets the query from the url
+        String query = request.getQueryString();
+        if(query != null && query.contains("logout")){
+            
+        }
         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
     }
@@ -42,6 +46,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        
+        if(username == null || username.isEmpty() || password == null || password.isEmpty()){
+            request.setAttribute("message", "Username or Password is missing");
+        }
+        
         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
     }
