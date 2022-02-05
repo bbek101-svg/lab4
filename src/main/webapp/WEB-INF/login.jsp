@@ -1,8 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : Feb 5, 2022, 1:37:22 PM
-    Author     : admin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +7,17 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Login</h1>
+        <form action="action" method="POST">
+            <div class="username">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter Username Here">
+            </div>
+            <div class="password">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter Password Here">
+            </div>
+            <button type="submit">Login</button>
+        </form>
     </body>
 </html>

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : home
-    Created on : Feb 5, 2022, 1:37:41 PM
-    Author     : admin
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,6 +7,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Home</h1>
     </body>
 </html>
