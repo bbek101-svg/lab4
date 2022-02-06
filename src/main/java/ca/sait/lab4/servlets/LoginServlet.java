@@ -31,15 +31,20 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if(session.getAttribute("username") != null){
-            response.sendRedirect("home");
-            return;
-        }
-        
-        //gets the query from the url
-        String query = request.getQueryString();
-        if(query != null && query.contains("logout")){
+            //gets the query from the url
+            String query = request.getQueryString();
+            if(query != null && query.contains("logout")){
+                session.invalidate();
+                request.setAttribute("message", "You are logged out.");
+            }else{
+               response.sendRedirect("home");
+                return; 
+            }
+            
             
         }
+        
+        
         getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
     }
